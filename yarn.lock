@@ -904,6 +904,11 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
+"@fortawesome/fontawesome-free@^6.1.1":
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-6.1.1.tgz#bf5d45611ab74890be386712a0e5d998c65ee2a1"
+  integrity sha512-J/3yg2AIXc9wznaVqpHVX3Wa5jwKovVF0AMYSnbmcXTiL3PpRPfF58pzWucCwEiCJBp+hCNRLWClTomD8SseKg==
+
 "@gar/promisify@^1.0.1":
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.3.tgz#555193ab2e3bb3b6adc3d551c9c030d9e860daf6"
@@ -942,6 +947,11 @@
   dependencies:
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
+
+"@popperjs/core@2.0.0-alpha.1":
+  version "2.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.0.0-alpha.1.tgz#027e88eb5d890b87942b3188cdc99a50786ad854"
+  integrity sha512-AEw/mCzKVPweZMy6DAeLQT2xDUtoHWL4I2v2/091Yr3M6RL5v2I786/3Ln1W19eO5/FoimUUtI6L8CpAp06Txw==
 
 "@rails/actioncable@^6.0.0":
   version "6.1.5"
@@ -1545,6 +1555,11 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha1-aN/1++YMUes3cl6p4+0xDcwed24=
+
+bootstrap@5.0.0-beta2:
+  version "5.0.0-beta2"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-5.0.0-beta2.tgz#ab1504a12807fa58e5e41408e35fcea42461e84b"
+  integrity sha512-e+uPbPHqTQWKyCX435uVlOmgH9tUt0xtjvyOC7knhKgOS643BrQKuTo+KecGpPV7qlmOyZgCfaM4xxPWtDEN/g==
 
 brace-expansion@^1.1.7:
   version "1.1.11"

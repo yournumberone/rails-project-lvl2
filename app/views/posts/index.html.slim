@@ -1,2 +1,11 @@
 h1
   | hello world
+
+- @posts.each do |post|
+  div.card
+    h5.card-header
+      = post.title
+    div.card-body
+      p.card-text
+        = card.body
+      = link_to 'show', post_path(path)
