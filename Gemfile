@@ -30,6 +30,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
 gem 'faker'
 gem 'rollbar'
+gem 'rubocop', '~> 1.27', require: false
 gem 'slim'
 
 group :development, :test do
