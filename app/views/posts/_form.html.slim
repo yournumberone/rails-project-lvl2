@@ -1,0 +1,5 @@
+= simple_form_for @post do |form|
+  = form.input :title
+  = form.input :body
+  = form.select :post_category_id, PostCategory.all.map { |r| [ r.name, r.id ]}
+  = form.submit 'Create'

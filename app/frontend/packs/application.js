@@ -10,6 +10,8 @@ import "channels"
 import '../js/bootstrap_js_files.js'
 import "@fortawesome/fontawesome-free/css/all"
 
+const images = require.context('../images', true)
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

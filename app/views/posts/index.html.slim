@@ -1,11 +1,23 @@
-h1
-  | hello world
+.container
+  .d-flex.justify-content-between
+    h1
+      | Popular Posts
+    div
+      - if user_signed_in?
+        = link_to 'new post', new_post_path, class: 'btn btn-warning btn-lg'
 
-- @posts.each do |post|
-  div.card
-    h5.card-header
-      = post.title
-    div.card-body
-      p.card-text
-        = card.body
-      = link_to 'show', post_path(path)
+  - @posts.each do |post|
+      .card.my-3.table-hover
+        = link_to post_path(post), class: "text-reset text-decoration-none" do
+          .card-body
+            h3.card-title
+              = post.title
+            .card-text
+              p.card-text
+                = post.body
+        .card-footer.d-flex.justify-content-between
+          span
+            = post.category.try(:name)
+          span
+            small Author: 
+            = post.creator.try(:email)
