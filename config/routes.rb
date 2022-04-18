@@ -10,6 +10,6 @@ Rails.application.routes.draw do
   end
 
   scope module: 'posts' do
-    resources :comments, only: [:update, :destroy]
+    resources :comments, only: :destroy
   end
 end

@@ -3,8 +3,7 @@ class Posts::LikesController < ApplicationController
   before_action :set_post
   def create
     unless liked?
-      like = PostLike.new(post_id: @post.id)
-      like.user = current_user
+      like = @post.likes.new(user_id: current_user.id)
       if like.save
         redirect_to post_path(@post)
       end
@@ -20,15 +19,8 @@ class Posts::LikesController < ApplicationController
     end
   end
 
-  def set_post
-    @post = Post.find(params[:post_id])
-  end
-
   def liked?
     @post.likes.pluck(:user_id).include? current_user.id
   end
 
-  # def find_like
-  #   @like = @post.likes.select {|like| like == current_user.id }
-  # end
 end

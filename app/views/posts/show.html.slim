@@ -6,13 +6,15 @@
   br
 
   .m-3
-    - like = @post.likes.select { |like| like.user.id == current_user.id }
-    - if like.present?
-      = link_to '', post_like_path(@post, like), method: :delete, class: 'fa-solid fa-heart text-danger text-decoration-none'
-    - else
-      = link_to '', post_likes_path(@post), method: :post, class: 'fa-solid fa-heart text-dark fw-lighter text-decoration-none'
-    span.ms-1
-      = @post.likes.size
+      = @post.created_at.strftime("%H:%M %B %d")
+      - like = @post.likes.select { |like| like.user.id == current_user.id } if user_signed_in?
+      .justify-content-end.d-flex
+        - if like.present?
+          = link_to '', post_like_path(@post, like), method: :delete, class: 'fa-solid fa-heart text-danger text-decoration-none'
+        - else
+          = link_to '', post_likes_path(@post), method: :post, class: 'fa-solid fa-heart text-dark fw-lighter text-decoration-none'
+        span.ms-1
+          = @post.likes.size
   hr.text-danger
 
 .container.mb-5
@@ -31,5 +33,7 @@
       hr
       span
         = comment.content
-      small.fst-italic.fw-lighter
+      small.text-muted.justify-content-end.d-flex
         = comment.created_at.strftime("%H:%M %B %d")
+        - if user_signed_in? && comment.user.id == current_user.id
+          = link_to 'Delete', comment_path(comment, post_id: @post.id), method: :delete, class: 'text-decoration-none text-reset ps-3'

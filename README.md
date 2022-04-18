@@ -4,4 +4,8 @@
 
 Tap to image for visit our blog:
 
-[![Foo](https://raw.githubusercontent.com/Hexlet/assets/master/images/hexlet_logo128.png)](https://collective-blog-ms.herokuapp.com//)
+[![Foo](https://s18955.pcdn.co/wp-content/uploads/2018/02/github.png)](https://blog-mars.herokuapp.com/)
+
+or link:
+
+https://blog-mars.herokuapp.com/

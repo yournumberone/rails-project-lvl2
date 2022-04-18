@@ -25,7 +25,14 @@ class PostsController < ApplicationController
     end
   end
 
-  def destroy; end
+  def destroy
+    @post = Post.find(params[:id])
+    if post.destroy
+      redirect_to posts_path, notice: 'Post was destroyed.'
+    else
+      redirect_to post_path(@post), alert: 'Oops'
+    end
+  end
 
   private
 
