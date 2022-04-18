@@ -1,0 +1,7 @@
+= simple_form_for @comment, url: post_comments_path(@post) do |form|
+  .row
+    .col-11.pe-0
+      = form.text_field :content, class: 'form-control'
+    .col-1
+      = form.button :button, class: 'btn btn-outline-dark w-100' do
+        i.fa-solid.fa-paper-plane

@@ -1,12 +1,12 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
+  before_action :find_post, only: [:destroy, :show, :edit, :update]
 
   def index
     @posts = Post.all
   end
 
   def show
-    @post = Post.find(params[:id])
     @comment = @post.comments.build
   end
 
@@ -25,9 +25,19 @@ class PostsController < ApplicationController
     end
   end
 
+  def edit; end
+
+  def update
+    if @post.update(post_params)
+      redirect_to post_path(@post), notice: 'Post was updated.'
+    else
+      flash[:alert] = 'Error on editing.'
+      render :edit
+    end
+  end
+
   def destroy
-    @post = Post.find(params[:id])
-    if post.destroy
+    if @post.destroy
       redirect_to posts_path, notice: 'Post was destroyed.'
     else
       redirect_to post_path(@post), alert: 'Oops'
@@ -38,5 +48,9 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(%i[title body post_category_id])
+  end
+
+  def find_post
+    @post = Post.find(params[:id])
   end
 end

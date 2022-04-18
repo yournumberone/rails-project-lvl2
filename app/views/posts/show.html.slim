@@ -6,27 +6,27 @@
   br
 
   .m-3
-      = @post.created_at.strftime("%H:%M %B %d")
-      - like = @post.likes.select { |like| like.user.id == current_user.id } if user_signed_in?
-      .justify-content-end.d-flex
-        - if like.present?
-          = link_to '', post_like_path(@post, like), method: :delete, class: 'fa-solid fa-heart text-danger text-decoration-none'
-        - else
-          = link_to '', post_likes_path(@post), method: :post, class: 'fa-solid fa-heart text-dark fw-lighter text-decoration-none'
-        span.ms-1
-          = @post.likes.size
+    .justify-content-start.d-flex
+      .text-muted
+        = @post.created_at.strftime("%H:%M %B %d")
+
+      - if user_signed_in? && @post.creator.id == current_user.id
+          = link_to 'Delete', post_path(@post), method: :delete, data: {confirm: 'Are You Sure?'}, class: 'text-decoration-none text-danger ps-3'
+          = link_to 'Edit', edit_post_path(@post), class: 'text-decoration-none text-dark ps-3'
+    - like = @post.likes.select { |like| like.user.id == current_user.id } if user_signed_in?
+    .justify-content-end.d-flex
+      - if like.present?
+        = link_to '', post_like_path(@post, like), method: :delete, class: 'fa-solid fa-heart text-danger text-decoration-none'
+      - else
+        = link_to '', post_likes_path(@post), method: :post, class: 'fa-solid fa-heart text-dark fw-lighter text-decoration-none'
+      span.ms-1
+        = @post.likes.size
   hr.text-danger
 
 .container.mb-5
   .my-3
-    h1 Comments
-  = simple_form_for @comment, url: post_comments_path(@post) do |form|
-    .row
-      .col-11.pe-0
-        = form.text_field :content, class: 'form-control'
-      .col-1
-        = form.button :button, class: 'btn btn-outline-dark w-100' do
-          i.fa-solid.fa-paper-plane
+    h3 Comments:
+  = render 'comment_form'
 
   - @post.comments.each do |comment|
     - unless comment.id.nil?
@@ -34,6 +34,8 @@
       span
         = comment.content
       small.text-muted.justify-content-end.d-flex
+        b.mx-1
+          = comment.user.email
         = comment.created_at.strftime("%H:%M %B %d")
         - if user_signed_in? && comment.user.id == current_user.id
           = link_to 'Delete', comment_path(comment, post_id: @post.id), method: :delete, class: 'text-decoration-none text-reset ps-3'
