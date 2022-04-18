@@ -14,10 +14,19 @@
               = post.title
             .card-text
               p.card-text
-                = post.body
+                = truncate post.body, length: 300
         .card-footer.d-flex.justify-content-between
           span
-            = post.category.try(:name)
-          span
-            small Author: 
+            span.badge.bg-warning
+              = post.category.try(:name)
+            small.ms-3 Author: 
             = post.creator.try(:email)
+          span
+            span.mx-3
+              i.fa-solid.fa-comment-dots
+              small.ms-1.fw-lighter.text-muted
+                = post.comments.size
+            span
+              i.fa-solid.fa-heart.text-danger
+              small.ms-1.fw-lighter.text-muted
+                = post.likes.size

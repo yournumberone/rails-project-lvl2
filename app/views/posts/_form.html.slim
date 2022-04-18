@@ -1,5 +1,11 @@
 = simple_form_for @post do |form|
-  = form.input :title
-  = form.input :body
-  = form.select :post_category_id, PostCategory.all.map { |r| [ r.name, r.id ]}
-  = form.submit
+  = form.label :title, class: 'form-label'
+  = form.input_field :title, class: 'form-control'
+  = form.label :body, class: 'form-label'
+  = form.input_field :body, class: 'form-control'
+  .my-1
+    = form.label :category, class: 'form-label mr-3'
+    .ml-3
+      = form.select :post_category_id, PostCategory.all.map { |r| [ r.name, r.id ]}
+  .actions
+    = form.button :submit, class: 'btn btn-primary'

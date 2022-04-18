@@ -3,6 +3,33 @@
     = @post.title
   p
     = @post.body
-  hr
-  | wow
-  hr
+  br
+
+  .m-3
+    - like = @post.likes.select { |like| like.user.id == current_user.id }
+    - if like.present?
+      = link_to '', post_like_path(@post, like), method: :delete, class: 'fa-solid fa-heart text-danger text-decoration-none'
+    - else
+      = link_to '', post_likes_path(@post), method: :post, class: 'fa-solid fa-heart text-dark fw-lighter text-decoration-none'
+    span.ms-1
+      = @post.likes.size
+  hr.text-danger
+
+.container.mb-5
+  .my-3
+    h1 Comments
+  = simple_form_for @comment, url: post_comments_path(@post) do |form|
+    .row
+      .col-11.pe-0
+        = form.text_field :content, class: 'form-control'
+      .col-1
+        = form.button :button, class: 'btn btn-outline-dark w-100' do
+          i.fa-solid.fa-paper-plane
+
+  - @post.comments.each do |comment|
+    - unless comment.id.nil?
+      hr
+      span
+        = comment.content
+      small.fst-italic.fw-lighter
+        = comment.created_at.strftime("%H:%M %B %d")

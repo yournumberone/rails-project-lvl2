@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: %i[index show]
 
   def index
     @posts = Post.all
@@ -7,12 +7,12 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comment = @post.comments.build
   end
 
   def new
-    @post = Post.new()
+    @post = Post.new
   end
-
 
   def create
     @post = Post.new(post_params)
@@ -25,14 +25,11 @@ class PostsController < ApplicationController
     end
   end
 
-  def destroy
-
-  end
+  def destroy; end
 
   private
 
   def post_params
-    params.require(:post).permit([:title, :body, :post_category_id])
+    params.require(:post).permit(%i[title body post_category_id])
   end
-
 end
