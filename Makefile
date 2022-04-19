@@ -4,7 +4,7 @@ install:
 	bundle exec rake db:seed
 lint:
 	bundle exec rubocop
-	slim-lint app/views
+	bundle exec slim-lint app/views
 test:
 	rake test
 
