@@ -31,7 +31,7 @@ gem 'ancestry'
 gem 'devise'
 gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
 gem 'rollbar'
-gem 'rubocop', '~> 1.27', require: false
+gem 'rubocop-rails'
 gem 'simple_form'
 gem 'slim'
 
