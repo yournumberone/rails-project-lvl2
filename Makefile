@@ -3,7 +3,7 @@ install:
 	bin/rails db:migrate
 	bundle exec rake db:seed
 lint:
-	rubocop
+	rubocop --require rubocop-rails
 	slim-lint app/views
 test:
 	rake test
