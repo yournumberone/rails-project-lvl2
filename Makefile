@@ -1,6 +1,6 @@
 install:
 	bundle install
-	rake db:seed
+	bundle exec rake db:seed
 lint:
 	rubocop
 	slim-lint app/views
