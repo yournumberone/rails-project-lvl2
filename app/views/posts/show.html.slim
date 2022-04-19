@@ -26,16 +26,6 @@
 .container.mb-5
   .my-3
     h3 Comments:
-  = render 'comment_form'
+  = render 'posts/comments/comment_form'
 
-  - @post.comments.each do |comment|
-    - unless comment.id.nil?
-      hr
-      span
-        = comment.content
-      small.text-muted.justify-content-end.d-flex
-        b.mx-1
-          = comment.user.email
-        = comment.created_at.strftime("%H:%M %B %d")
-        - if user_signed_in? && comment.user.id == current_user.id
-          = link_to 'Delete', comment_path(comment, post_id: @post.id), method: :delete, class: 'text-decoration-none text-reset ps-3'
+  = render 'posts/comments/comments_list'
