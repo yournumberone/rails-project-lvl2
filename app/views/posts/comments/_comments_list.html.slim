@@ -21,7 +21,7 @@
           = simple_form_for @comment, url: post_comments_path(@post) do |form|
             .row
               .col-11.pe-0
-                = form.text_field :content, placeholder: 'Add a comment', class: 'form-control'
+                = form.text_field :content, placeholder: 'Write your answer...', class: 'form-control'
               .col-1
                 = form.hidden_field :ancestry, value: comment.id
                 = form.button :button, class: 'btn btn-outline-dark w-100' do

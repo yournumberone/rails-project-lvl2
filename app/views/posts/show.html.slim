@@ -27,7 +27,7 @@
   .my-3
     i.fa-regular.fa-comments
     span.ms-1
-      = @post.comments.size
+      = @post.comments.size - 1
     h4 Comments:
 
   = render 'posts/comments/comment_form'
