@@ -8,7 +8,7 @@
 
   - @posts.each do |post|
       .card.my-3.table-hover
-        = link_to post_path(post), class: "text-reset text-decoration-none" do
+        = link_to post_path(post), class: 'text-reset text-decoration-none' do
           .card-body
             h3.card-title
               = post.title
@@ -17,7 +17,7 @@
                 = truncate post.body, length: 300
         .card-footer.d-flex.justify-content-between
           span
-            span.badge.bg-warning
+            .badge.bg-warning
               = post.category.try(:name)
             small.ms-3 Author: 
             = post.creator.try(:email)

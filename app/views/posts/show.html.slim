@@ -7,11 +7,15 @@
 
   .m-3
     .justify-content-start.d-flex
-      .text-muted
-        = @post.created_at.strftime("%H:%M %B %d")
+      b.text-warning
+        = @post.creator.email
+      .text-muted.ms-2
+        = @post.created_at.strftime('%H:%M %B %d')
+      .badge.bg-dark.ms-2
+        = @post.category.try(:name)
 
       - if user_signed_in? && @post.creator.id == current_user.id
-          = link_to 'Delete', post_path(@post), method: :delete, data: {confirm: 'Are You Sure?'}, class: 'text-decoration-none text-danger ps-3'
+          = link_to 'Delete', post_path(@post), method: :delete, data: { confirm: 'Are You Sure?' }, class: 'text-decoration-none text-danger ps-3'
           = link_to 'Edit', edit_post_path(@post), class: 'text-decoration-none text-dark ps-3'
     - like = @post.likes.select { |like| like.user.id == current_user.id } if user_signed_in?
     .justify-content-end.d-flex

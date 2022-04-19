@@ -1,13 +1,13 @@
 nav.navbar.bg-light.navbar-expand-lg.px-3.mb-3.rounded-bottom.border-top.border-warning.border-3.sticky-top
   .container-fluid
-    = link_to 'Hexlet Blog', root_path, class: "navbar-brand text-success"
+    = link_to 'Hexlet Blog', root_path, class: 'navbar-brand text-success'
 
     ul.navbar-nav.me-auto.mb-2.mb-lg-0
 
   li.nav-item.text-light
-    = link_to 'Home', root_path, class: "nav-link active text-dark"
+    = link_to 'Home', root_path, class: 'nav-link active text-dark'
   li.nav-item
-    = link_to 'Posts', posts_path, class: "nav-link text-dark"
+    = link_to 'Posts', posts_path, class: 'nav-link text-dark'
 
   form.d-flex
   input.form-control.me-2.border.border-success[type="search" placeholder="Search" aria-label="Search"]

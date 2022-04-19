@@ -6,7 +6,7 @@
     small.text-muted.justify-content-end.d-flex
       b.mx-1
         = comment.user.email
-      = comment.created_at.strftime("%H:%M %B %d")
+      = comment.created_at.strftime('%H:%M %m.%d')
       - if user_signed_in? && comment.user.id == current_user.id
         = link_to 'Delete', comment_path(comment, post_id: @post.id), method: :delete, class: 'text-decoration-none text-reset ps-3'
 
@@ -34,6 +34,6 @@
             small.text-muted.justify-content-end.d-flex
               b.mx-1
                 = child.user.email
-              = child.created_at.strftime("%H:%M %B %d")
+              = child.created_at.strftime('%H:%M %B %d')
               - if user_signed_in? && child.user.id == current_user.id
                 = link_to 'Delete', comment_path(child, post_id: @post.id), method: :delete, class: 'text-decoration-none text-reset ps-3'

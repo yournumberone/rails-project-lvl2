@@ -1,0 +1,19 @@
+---
+
+exclude:
+  - vendor/*
+  - node_modules/*
+
+linters:
+
+  LineLength:
+    max: 180
+
+  TrailingWhitespace:
+    enabled: false
+
+  Lint/AmbiguousBlockAssociation:
+    enabled: true
+
+  Lint/ShadowingOuterLocalVariable:
+    enabled: false
