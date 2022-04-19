@@ -11,9 +11,3 @@ linters:
 
   TrailingWhitespace:
     enabled: false
-
-  Lint/AmbiguousBlockAssociation:
-    enabled: true
-
-  Lint/ShadowingOuterLocalVariable:
-    enabled: false

@@ -50,3 +50,9 @@ Rails/InverseOf:
 
 Rails/FilePath:
   Enabled: false
+
+Lint/ShadowingOuterLocalVariable:
+  Enabled: false
+
+Lint/AmbiguousBlockAssociation:
+  Enabled: false
