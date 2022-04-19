@@ -24,6 +24,4 @@ jobs:
         with:
           bundler-cache: true
 
-      - run: gem install rubocop
-      - run: gem install slim_lint
       - run: make lint
