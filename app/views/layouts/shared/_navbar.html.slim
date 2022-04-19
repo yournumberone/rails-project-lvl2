@@ -9,10 +9,12 @@ nav.navbar.bg-light.navbar-expand-lg.px-3.mb-3.rounded-bottom.border-top.border-
   li.nav-item
     = link_to 'Posts', posts_path, class: 'nav-link text-dark'
 
-  form.d-flex
-  input.form-control.me-2.border.border-success[type="search" placeholder="Search" aria-label="Search"]
-  button.btn.btn-outline-success[type="submit"]
-    i.fa-solid.fa-magnifying-glass
+  - if current_page?(posts_path) || current_page?(root_path)
+    = search_form_for @q, class: 'form d-flex mx-3' do |f|
+      .input-group
+        = f.search_field :body_or_title_cont, class: 'form-control border-end-0 border-success', placeholder: 'Search...'
+        = f.button :button, class: 'btn btn-outline-success border-start-0 input-group-append' do
+          i.fa-solid.fa-magnifying-glass
 
   li.nav-item.dropdown
     a#navbarDropdown.nav-link.dropdown-toggle.text-dark[href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"]
