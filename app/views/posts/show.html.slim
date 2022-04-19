@@ -25,7 +25,11 @@
 
 .container.mb-5
   .my-3
-    h3 Comments:
+    i.fa-regular.fa-comments
+    span.ms-1
+      = @post.comments.size
+    h4 Comments:
+
   = render 'posts/comments/comment_form'
 
   = render 'posts/comments/comments_list'
