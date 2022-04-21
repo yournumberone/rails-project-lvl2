@@ -19,8 +19,8 @@
           span
             .badge.bg-warning
               = post.post_category.try(:name)
-            small.ms-3 Author: 
-            = post.creator.try(:email)
+            small.ms-3 Author:
+            =< post.creator.try(:email)
           span
             span.mx-3
               i.fa-regular.fa-comment-dots

@@ -9,5 +9,3 @@ linters:
   LineLength:
     max: 180
 
-  TrailingWhitespace:
-    enabled: false
