@@ -37,19 +37,7 @@ Metrics/BlockLength:
 Style/AsciiComments:
   Enabled: false
 
-# Style/FrozenStringLiteralComment:
-#   Enabled: false
-
-Style/RedundantFetchBlock:
-  Enabled: false
-
-Style/GlobalStdStream:
-  Enabled: false
-
 Rails/InverseOf:
-  Enabled: false
-
-Rails/FilePath:
   Enabled: false
 
 Lint/ShadowingOuterLocalVariable:
