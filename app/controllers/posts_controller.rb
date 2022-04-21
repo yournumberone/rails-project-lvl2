@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
   before_action :find_post, only: %i[destroy show edit update]
@@ -20,10 +22,10 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.creator = current_user
     if @post.save
-      redirect_to post_path(@post), notice: 'Post was successfully created'
+      redirect_to post_path(@post), notice: t('.success')
     else
-      flash[:alert] = 'Ooops'
-      render :new
+      flash[:alert] = t('.error')
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -31,18 +33,18 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      redirect_to post_path(@post), notice: 'Post was updated.'
+      redirect_to post_path(@post), notice: t('.success')
     else
-      flash[:alert] = 'Error on editing.'
+      flash[:alert] = t('.error')
       render :edit
     end
   end
 
   def destroy
     if @post.destroy
-      redirect_to posts_path, notice: 'Post was destroyed.'
+      redirect_to posts_path, notice: t('.success')
     else
-      redirect_to post_path(@post), alert: 'Oops'
+      redirect_to post_path(@post), alert: t('.error')
     end
   end
 
@@ -58,6 +60,6 @@ class PostsController < ApplicationController
 
   def owner?
     @photo = current_user.posts.find_by(id: params[:id])
-    redirect_to posts_path, alert: 'You do not have permission to edit this post..' if @photo.nil?
+    redirect_to posts_path, alert: t('permission_denied') if @photo.nil?
   end
 end

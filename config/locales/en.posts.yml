@@ -1,0 +1,49 @@
+en:
+  posts:
+    comments_count:
+      zero: No comments
+      one: '1 comment'
+      few: '%{count} comments'
+      many: '%{count} comments'
+      other: '%{count} comments'
+    show:
+      body: Body
+      comments: Comments
+    index:
+      new_post: New Post
+      delete: Delete
+      edit: Edit
+      read: Read
+      title: Title
+    list: Posts
+    new:
+      title: New Post
+    edit:
+      title: Editing
+    create:
+      success: Post was created.
+      error: Oops! Post was not created.
+    update:
+      success: Post was updated.
+      error: Oops! Post was not updated.
+    destroy:
+      success: Post was destroyed.
+      error: Oops! Post was not destroyed.
+
+    comments:
+      edit:
+        title: Editing comment
+
+      create:
+        success: OMG! Who is this cool commentator here?
+        error: Oops! Comment was not created.
+
+      destroy:
+        success: Comment was updated.
+        error: Oops! Comment was not destroyed.
+
+    likes:
+      create:
+        success: Liked!
+      destroy:
+        success: Unliked!

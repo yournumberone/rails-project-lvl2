@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Posts::CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post
@@ -7,18 +9,18 @@ class Posts::CommentsController < ApplicationController
     @comment = @post.comments.new(comment_params)
     @comment.user = current_user
     if @comment.save
-      redirect_to post_path(@post), notice: 'OMG! Who is this cool commentator here?'
+      redirect_to post_path(@post), notice: t('.success')
     else
-      redirect_to post_path(@post), alert: 'Oops'
+      redirect_to post_path(@post), alert: t('.error')
     end
   end
 
   def destroy
     @comment = PostComment.find(params[:id])
     if @comment.destroy
-      redirect_to post_path(@post), notice: 'Comment was destroyed.'
+      redirect_to post_path(@post), notice: t('.success')
     else
-      redirect_to post_path(@post), alert: 'Oops'
+      redirect_to post_path(@post), alert: t('.error')
     end
   end
 
@@ -30,6 +32,6 @@ class Posts::CommentsController < ApplicationController
 
   def owner?
     @comment = current_user.post_comments.find_by(id: params[:id])
-    redirect_to post_path(@post), alert: 'You do not have permission to destroy this comment..' if @comment.nil?
+    redirect_to post_path(@post), alert: t('permission_denied') if @comment.nil?
   end
 end
