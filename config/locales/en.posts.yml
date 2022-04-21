@@ -39,7 +39,7 @@ en:
         error: Oops! Comment was not created.
 
       destroy:
-        success: Comment was updated.
+        success: Comment was destroyed.
         error: Oops! Comment was not destroyed.
 
     likes:

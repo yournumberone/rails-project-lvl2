@@ -24,4 +24,5 @@ jobs:
         with:
           bundler-cache: true
 
+      - run: make test
       - run: make lint

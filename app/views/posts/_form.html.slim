@@ -6,7 +6,7 @@
   = form.input_field :body, class: 'form-control'
   .my-1
     = form.label :category, class: 'form-label mr-3'
-    .ml-3
-      = form.select :post_category_id, PostCategory.all.map { |r| [r.name, r.id] }
+  .ml-3
+    = form.select :post_category_id, PostCategory.all.map { |r| [r.name, r.id] }, class: 'form-select'
   .actions
     = form.button :submit, class: 'btn btn-primary'
