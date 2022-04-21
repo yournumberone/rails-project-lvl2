@@ -2,15 +2,16 @@ nav.navbar.bg-light.navbar-expand-lg.px-3.mb-3.rounded-bottom.border-top.border-
   .container-fluid
     = link_to 'Hexlet Blog', root_path, class: 'navbar-brand text-success'
 
-    ul.navbar-nav.me-auto.mb-2.mb-lg-0
+  ul.navbar-nav.me-auto.mb-2.mb-lg-0
 
   li.nav-item.text-light
     = link_to 'Home', root_path, class: 'nav-link active text-dark'
+
   li.nav-item
     = link_to 'Posts', posts_path, class: 'nav-link text-dark'
 
   - if current_page?(posts_path) || current_page?(root_path)
-    = search_form_for @q, class: 'form d-flex mx-3' do |f|
+    = search_form_for @q, class: 'form d-flex mx-3 w-50' do |f|
       .input-group
         = f.search_field :body_or_title_cont, class: 'form-control border-end-0 border-success', placeholder: 'Search...'
         = f.button :button, class: 'btn btn-outline-success border-start-0 input-group-append' do

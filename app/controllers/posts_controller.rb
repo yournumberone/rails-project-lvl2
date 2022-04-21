@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
   before_action :find_post, only: %i[destroy show edit update]
+  before_action :owner?, only: %i[edit update destroy]
 
   def index
     @q = Post.ransack(params[:q])
@@ -53,5 +54,10 @@ class PostsController < ApplicationController
 
   def find_post
     @post = Post.find(params[:id])
+  end
+
+  def owner?
+    @photo = current_user.posts.find_by(id: params[:id])
+    redirect_to posts_path, alert: 'You do not have permission to edit this post..' if @photo.nil?
   end
 end

@@ -2,14 +2,14 @@ class Posts::LikesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post
   def create
-    return unless liked?
+    return if liked?
 
     like = @post.likes.new(user_id: current_user.id)
     redirect_to post_path(@post), notice: 'Post Was Liked.' if like.save
   end
 
   def destroy
-    return if liked?
+    return unless liked?
 
     like = PostLike.find(params[:id])
     redirect_to post_path(@post), notice: 'Post Was Unliked.' if like.destroy
