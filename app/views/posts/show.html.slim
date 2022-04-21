@@ -12,7 +12,7 @@
       .text-muted.ms-2
         = @post.created_at.strftime('%H:%M %B %d')
       .badge.bg-dark.ms-2
-        = @post.category.try(:name)
+        = @post.post_category.try(:name)
 
       - if user_signed_in? && @post.creator.id == current_user.id
           = link_to 'Delete', post_path(@post), method: :delete, data: { confirm: 'Are You Sure?' }, class: 'text-decoration-none text-danger ps-3'
