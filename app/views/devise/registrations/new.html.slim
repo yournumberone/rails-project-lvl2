@@ -5,25 +5,16 @@
           .card-body
             h2.card-title
               | Sign up
-            = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+            = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
               = render 'devise/shared/error_messages', resource: resource
-              .field
+              .field.mb-3
                 = f.label :email
                 br
                 = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control'
               .field
-                = f.label :password
-                - if @minimum_password_length
-                  em
-                    | (
-                    = @minimum_password_length
-                    |  characters minimum)
-                br
-                = f.password_field :password, autocomplete: 'new-password', class: 'form-control'
-              .field
-                = f.label :password_confirmation
-                br
-                = f.password_field :password_confirmation, autocomplete: 'new-password', class: 'form-control'
+                - length = @minimum_password_length.present? ? "#{@minimum_password_length} characters minimum" : ''
+                = f.input :password, autocomplete: 'new-password', class: 'form-control', placeholder: length
+                = f.input :password_confirmation, autocomplete: 'new-password', class: 'form-control'
               .actions
                 = f.submit 'Sign up', class: 'btn btn-success my-3'
             = render 'devise/shared/links'

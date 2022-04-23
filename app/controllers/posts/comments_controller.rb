@@ -11,7 +11,8 @@ class Posts::CommentsController < ApplicationController
     if @comment.save
       redirect_to post_path(@post), notice: t('.success')
     else
-      redirect_to post_path(@post), alert: t('.error')
+      flash[:alert] = t('.error')
+      render template: 'posts/show'
     end
   end
 
@@ -20,7 +21,8 @@ class Posts::CommentsController < ApplicationController
     if @comment.destroy
       redirect_to post_path(@post), notice: t('.success')
     else
-      redirect_to post_path(@post), alert: t('.error')
+      flash[:alert] = t('.error')
+      render template: 'posts/show'
     end
   end
 
