@@ -2,7 +2,7 @@
 
 class Posts::CommentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_post
+  before_action :set_post, only: :create
   before_action :owner?, only: :destroy
 
   def create
@@ -18,8 +18,9 @@ class Posts::CommentsController < ApplicationController
 
   def destroy
     @comment = PostComment.find(params[:id])
+    post = @comment.post
     if @comment.destroy
-      redirect_to post_path(@post), notice: t('.success')
+      redirect_to post_path(post), notice: t('.success')
     else
       flash[:alert] = t('.error')
       render template: 'posts/show'
@@ -34,6 +35,6 @@ class Posts::CommentsController < ApplicationController
 
   def owner?
     @comment = current_user.post_comments.find_by(id: params[:id])
-    redirect_to post_path(@post), alert: t('permission_denied') if @comment.nil?
+    redirect_to posts_path, alert: t('permission_denied') if @comment.nil?
   end
 end

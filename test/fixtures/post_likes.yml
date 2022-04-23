@@ -1,7 +1,7 @@
 
 one:
   post: one
-  user: one
+  user: two
 
 two:
   post: two

@@ -11,7 +11,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     @category = post_categories(:two)
     @attrs = {
       title: Faker::Movies::Lebowski.quote,
-      body: Faker::TvShows::FamilyGuy.quote,
+      body: Faker::Books::Lovecraft.paragraph,
       post_category_id: @category.id
     }
   end
