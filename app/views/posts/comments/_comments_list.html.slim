@@ -3,17 +3,19 @@
     hr
     span
       = comment.content
-    small.text-muted.justify-content-end.d-flex
-      b.mx-1
+    small.justify-content-end.d-flex
+      b.text-warning
         = comment.user.email
-      = comment.created_at.strftime('%H:%M %m.%d')
-      - if user_signed_in? && comment.user.id == current_user.id
-        = link_to 'Delete', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-decoration-none text-reset ps-3'
+      span.text-muted.ms-2
+        | at:
+        =< comment.created_at.strftime('%H:%M %m.%d')
+        - if user_signed_in? && comment.user.id == current_user.id
+          = link_to 'Delete', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-decoration-none text-reset ps-3'
 
     button.btn type="button" data-bs-toggle="collapse" data-bs-target="#collapse#{i}" aria-expanded="false" aria-controls="collapse#{i}"
       i.fa-regular.fa-comment-dots
       span.ms-1.text-muted
-        = comment.children.size
+        = comment.descendant_ids.size
     .collapse id="collapse#{i}"
       .row.justify-content-end
         .col-11
@@ -23,17 +25,37 @@
               .col-11.pe-0
                 = form.text_field :content, placeholder: 'Write your answer...', class: 'form-control'
               .col-1
-                = form.hidden_field :ancestry, value: comment.id
-                = form.button :button, class: 'btn btn-outline-dark w-100' do
+                = form.hidden_field :parent_id, value: comment.id
+                = form.button :button, class: 'btn w-100' do
                   i.fa-solid.fa-paper-plane
 
-          - comment.children.each do |child|
+          - comment.descendants.each_with_index do |child, i|
             hr
-            span
+            div
               = child.content
-            small.text-muted.justify-content-end.d-flex
-              b.mx-1
-                = child.user.email
-              = child.created_at.strftime('%H:%M %B %d')
-              - if user_signed_in? && child.user.id == current_user.id
-                = link_to 'Delete', comment_path(child), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-decoration-none text-reset ps-3'
+              - if child.parent_id != child.root_id
+                i.text-secondary.fa-brands.fa-replyd.mx-2
+                span.text-muted
+                  = child.parent.try(:user).email if child.parent_id != child.root_id
+            .d-flex.justify-content-between
+              button.btn.btn-sm.text-warning type="button" data-bs-toggle="collapse" data-bs-target="#reply#{i}" aria-expanded="false" aria-controls="reply#{i}"
+                | Reply
+              small
+                = child.try(:user).email
+                span.ms-2.text-muted
+                  | at:
+                  =< child.created_at.strftime('%H:%M %m.%d')
+                - if user_signed_in? && child.user.id == current_user.id
+                  = link_to 'Delete', comment_path(child), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-decoration-none text-reset ps-3'
+
+            .collapse id="reply#{i}"
+              .row.justify-content-end
+                .col-11.my-3
+                  = simple_form_for @comment, url: post_comments_path(@post) do |form|
+                    .row
+                      .col-11.pe-0
+                        = form.text_field :content, placeholder: 'Write your answer...', class: 'form-control'
+                      .col-1
+                        = form.hidden_field :parent_id, value: child.id
+                        = form.button :button, class: 'btn w-100' do
+                          i.fa-solid.fa-paper-plane
