@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Posts::CommentsController < ApplicationController
+class Posts::CommentsController < Posts::ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only: :create
   before_action :owner?, only: :destroy
@@ -34,7 +34,7 @@ class Posts::CommentsController < ApplicationController
   end
 
   def owner?
-    @comment = current_user.post_comments.find_by(id: params[:id])
+    @comment = current_user.comments.find_by(id: params[:id])
     redirect_to posts_path, alert: t('permission_denied') if @comment.nil?
   end
 end
