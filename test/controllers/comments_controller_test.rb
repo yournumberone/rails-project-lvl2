@@ -24,7 +24,7 @@ class Posts::CommentsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should destroy comment' do
     post = @comment.post
-    delete comment_path(@comment)
+    delete post_comment_path(post, @comment)
 
     assert { !PostComment.exists?(@comment.id) }
     assert_redirected_to post_path(post)

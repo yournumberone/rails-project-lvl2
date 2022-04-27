@@ -59,7 +59,7 @@ class PostsController < ApplicationController
   end
 
   def owner?
-    @photo = current_user.posts.find_by(id: params[:id])
-    redirect_to posts_path, alert: t('permission_denied') if @photo.nil?
+    @post = current_user.posts.find_by(id: params[:id])
+    redirect_to posts_path, alert: t('permission_denied') if @post.nil?
   end
 end
