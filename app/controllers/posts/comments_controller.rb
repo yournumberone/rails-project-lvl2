@@ -2,10 +2,11 @@
 
 class Posts::CommentsController < Posts::ApplicationController
   before_action :authenticate_user!
-  before_action :set_post, only: :create
-  before_action :owner?, only: :destroy
+  # before_action :set_post, only: :create
+  # before_action :owner?, only: :destroy
 
   def create
+    @post = find_post
     @comment = @post.comments.new(comment_params)
     @comment.user = current_user
     if @comment.save
@@ -18,6 +19,7 @@ class Posts::CommentsController < Posts::ApplicationController
 
   def destroy
     @comment = PostComment.find(params[:id])
+    check_owner(@comment)
     post = @comment.post
     if @comment.destroy
       redirect_to post_path(post), notice: t('.success')
@@ -33,8 +35,7 @@ class Posts::CommentsController < Posts::ApplicationController
     params.require(:post_comment).permit(%i[content parent_id])
   end
 
-  def owner?
-    @comment = current_user.comments.find_by(id: params[:id])
-    redirect_to posts_path, alert: t('permission_denied') if @comment.nil?
+  def check_owner(comment)
+    redirect_to posts_path, alert: t('permission_denied') and return unless comment.user_id == current_user.id
   end
 end

@@ -1,10 +1,10 @@
 .container
   .d-flex.justify-content-between
     h1
-      | Popular Posts
+      = t('popular_posts')
     div
       - if user_signed_in?
-        = link_to 'new post', new_post_path, class: 'btn btn-warning btn-lg'
+        = link_to t('.new_post'), new_post_path, class: 'btn btn-warning btn-lg'
 
   - @posts.each do |post|
       .card.my-3.table-hover
@@ -18,15 +18,15 @@
         .card-footer.d-flex.justify-content-between
           span
             .badge.bg-warning
-              = post.post_category.try(:name)
-            small.ms-3 Author:
-            =< post.creator.try(:email)
+              = post.post_category&.name
+            small.ms-3 = t('.author')
+            =< post.creator.email
           span
             span.mx-3
               i.fa-regular.fa-comment-dots
               small.ms-1.fw-lighter.text-muted
-                = post.comments.size
+                = post.post_comments_count
             span
               i.fa-solid.fa-heart.text-danger
               small.ms-1.fw-lighter.text-muted
-                = post.likes.size
+                = post.post_likes_count

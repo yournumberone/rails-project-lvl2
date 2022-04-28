@@ -8,8 +8,9 @@ en:
       other: '%{count} comments'
     show:
       body: Body
-      comments: Comments
+      comments: 'Comments: '
     index:
+      author: 'Author: '
       new_post: New Post
       delete: Delete
       edit: Edit
@@ -41,6 +42,12 @@ en:
       destroy:
         success: Comment was destroyed.
         error: Oops! Comment was not destroyed.
+
+      comment_form:
+        add_comment: 'Add a comment..'
+
+      comments_list:
+        write_answer: 'Write your answer..'
 
     likes:
       create:

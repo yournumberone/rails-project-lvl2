@@ -2,8 +2,9 @@
 
 class Posts::LikesController < Posts::ApplicationController
   before_action :authenticate_user!
-  before_action :set_post
+
   def create
+    @post = find_post
     return if liked?
 
     like = @post.likes.new(user_id: current_user.id)
@@ -11,6 +12,7 @@ class Posts::LikesController < Posts::ApplicationController
   end
 
   def destroy
+    @post = find_post
     return unless liked?
 
     like = PostLike.find(params[:id])

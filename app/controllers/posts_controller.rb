@@ -2,16 +2,16 @@
 
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
-  before_action :find_post, only: %i[destroy show edit update]
-  before_action :owner?, only: %i[edit update destroy]
 
   def index
-    @q = Post.ransack(params[:q])
+    @q = Post.includes(:creator, :post_category).ransack(params[:q])
     @posts = @q.result(distinct: true)
   end
 
   def show
+    @post = find_post
     @comment = @post.comments.build
+    @like = @post.likes.where(user_id: current_user.id).first if user_signed_in?
   end
 
   def new
@@ -19,8 +19,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
-    @post.creator = current_user
+    @post = current_user.posts.new(post_params)
     if @post.save
       redirect_to post_path(@post), notice: t('.success')
     else
@@ -29,9 +28,14 @@ class PostsController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    @post = find_post
+    check_owner(@post)
+  end
 
   def update
+    @post = find_post
+    check_owner(@post)
     if @post.update(post_params)
       redirect_to post_path(@post), notice: t('.success')
     else
@@ -41,6 +45,8 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    @post = find_post
+    check_owner(@post)
     if @post.destroy
       redirect_to posts_path, notice: t('.success')
     else
@@ -55,11 +61,10 @@ class PostsController < ApplicationController
   end
 
   def find_post
-    @post = Post.find(params[:id])
+    Post.find(params[:id])
   end
 
-  def owner?
-    @post = current_user.posts.find_by(id: params[:id])
-    redirect_to posts_path, alert: t('permission_denied') if @post.nil?
+  def check_owner(post)
+    redirect_to posts_path, alert: t('permission_denied') and return unless post.creator.id == current_user.id
   end
 end
