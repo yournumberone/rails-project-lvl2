@@ -1,6 +1,7 @@
   hr
     .mh-100
-      = comment.content
+      .overflow-auto
+        = comment.content
       .d-flex.justify-content-between.mt-2
         button.btn.btn-sm.text-warning type="button" data-bs-toggle="modal" data-bs-target="#reply#{comment.id}" aria-expanded="false" aria-controls="reply#{comment.id}"
           = t('reply')
