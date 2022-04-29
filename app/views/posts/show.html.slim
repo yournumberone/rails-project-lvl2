@@ -33,6 +33,6 @@
       = @post.post_comments_count
     h4 = t('.comments')
 
-  = render 'posts/comments/comment_form'
+  = render partial: 'posts/comments/comment_form', locals: { comment: @comment, post: @post }
 
-  = render 'posts/comments/comments_list'
+  = render partial: 'posts/comments/comments_list', locals: { post: @post }

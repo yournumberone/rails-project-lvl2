@@ -1,9 +1,9 @@
-= simple_form_for @post do |form|
+= simple_form_for post do |form|
   = form.input :title, input_html: { class: 'form-control' }
   = form.input :body, input_html: { class: 'form-control' }
   .my-1
     = form.label :category, class: 'form-label mr-3'
   .ml-3
-    = form.select :post_category_id, PostCategory.all.map { |r| [r.name, r.id] }, {}, { class: 'form-select' }
+    = form.association :post_category
   .actions
     = form.button :submit, class: 'btn btn-primary my-3'
