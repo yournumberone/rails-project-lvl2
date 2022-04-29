@@ -3,10 +3,10 @@ one:
   title: MyString
   body: MyText
   creator: one
-  post_category: two
+  category: two
 
 two:
   title: MyString
   body: MyText
   creator: two
-  post_category: one
+  category: one

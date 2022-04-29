@@ -8,11 +8,11 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   setup do
     sign_in users(:one)
     @post = posts(:one)
-    @category = post_categories(:two)
+    @category = categories(:two)
     @attrs = {
       title: Faker::Movies::Lebowski.quote,
       body: Faker::Books::Lovecraft.paragraph,
-      post_category_id: @category.id
+      category_id: @category.id
     }
   end
 

@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
 
   def index
-    @q = Post.includes(:creator, :post_category).ransack(params[:q])
+    @q = Post.includes(:creator, :category).ransack(params[:q])
     @posts = @q.result(distinct: true)
   end
 
@@ -58,7 +58,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(%i[title body post_category_id])
+    params.require(:post).permit(%i[title body category_id])
   end
 
   def find_post

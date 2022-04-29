@@ -18,7 +18,7 @@
         .card-footer.d-flex.justify-content-between
           span
             .badge.bg-warning
-              = post.post_category&.name
+              = post.category&.name
             small.ms-3 = t('.author')
             =< post.creator.email
           span

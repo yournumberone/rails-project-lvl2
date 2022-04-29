@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_28_191740) do
+ActiveRecord::Schema.define(version: 2022_04_29_221259) do
 
-  create_table "post_categories", force: :cascade do |t|
+  create_table "categories", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -43,12 +43,12 @@ ActiveRecord::Schema.define(version: 2022_04_28_191740) do
     t.string "title", null: false
     t.text "body", null: false
     t.integer "user_id"
-    t.integer "post_category_id"
+    t.integer "category_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "post_comments_count"
     t.integer "post_likes_count"
-    t.index ["post_category_id"], name: "index_posts_on_post_category_id"
+    t.index ["category_id"], name: "index_posts_on_category_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -68,6 +68,6 @@ ActiveRecord::Schema.define(version: 2022_04_28_191740) do
   add_foreign_key "post_comments", "users"
   add_foreign_key "post_likes", "posts"
   add_foreign_key "post_likes", "users"
-  add_foreign_key "posts", "post_categories"
+  add_foreign_key "posts", "categories"
   add_foreign_key "posts", "users"
 end
