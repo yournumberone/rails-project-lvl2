@@ -35,4 +35,5 @@
 
   = render partial: 'posts/comments/comment_form', locals: { comment: @comment, post: @post }
 
-  = render partial: 'posts/comments/comments_list', locals: { post: @post }
+  - @comments.each do |comment|
+    = render partial: 'posts/comments/comment', locals: { comment: comment }

@@ -1,0 +1,17 @@
+.modal.fade.mt-3 id="reply#{comment_id}"
+  .modal-dialog
+    .modal-content.p-3
+      .modal-header
+        h5.modal-title
+          = content
+      .modal-body
+        = simple_form_for comment, url: post_comments_path(@post) do |form|
+          .row
+            .col-11.pe-0
+              = form.text_field :content, placeholder: 'Write your answer...', class: 'form-control m-3'
+              = form.hidden_field :parent_id, value: comment_id
+          .modal-footer
+              button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                | Close
+              = form.button :button, class: 'btn btn-secondary' do
+                i.fa-solid.fa-paper-plane.fa-lg

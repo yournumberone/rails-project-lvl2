@@ -11,6 +11,7 @@ class PostsController < ApplicationController
   def show
     @post = find_post
     @comment = @post.comments.build
+    @comments = @post.comments.where(ancestry: nil)
     @like = @post.likes.where(user_id: current_user.id).first if user_signed_in?
   end
 

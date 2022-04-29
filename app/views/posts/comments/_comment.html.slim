@@ -1,0 +1,22 @@
+  hr
+    .mh-100
+      = comment.content
+      .d-flex.justify-content-between.mt-2
+        button.btn.btn-sm.text-warning type="button" data-bs-toggle="modal" data-bs-target="#reply#{comment.id}" aria-expanded="false" aria-controls="reply#{comment.id}"
+          = t('reply')
+        small.justify-content-end.d-flex
+          b.text-warning
+            = comment.user.email
+          span.text-muted.ms-2
+            = t('at')
+            =< comment.created_at.strftime('%H:%M %m.%d')
+          - if user_signed_in? && comment.user.id == current_user.id
+            = link_to 'Delete', post_comment_path(@post, comment), method: :delete, data: { confirm: t('are_you_sure') }, class: 'text-decoration-none text-reset ps-3'
+
+      = render partial: 'posts/comments/answer_form', locals: { comment: @comment, comment_id: comment.id, content: comment.content }
+
+      - if comment.has_children?
+        .row.justify-content-end
+          - comment.children.each do |comment|
+            .col-11
+              = render partial: 'posts/comments/comment', locals: { comment: comment }
