@@ -5,13 +5,13 @@
         h5.modal-title
           = content
       .modal-body
-        = simple_form_for comment, url: post_comments_path(@post) do |form|
+        = simple_form_for comment, url: post_comments_path(comment.post) do |form|
           .row
             .col-11.pe-0
-              = form.text_field :content, placeholder: 'Write your answer...', class: 'form-control m-3'
+              = form.text_field :content, placeholder: t('.write_answer'), class: 'form-control m-3'
               = form.hidden_field :parent_id, value: comment_id
           .modal-footer
               button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
-                | Close
+                = t('close')
               = form.button :button, class: 'btn btn-secondary' do
                 i.fa-solid.fa-paper-plane.fa-lg

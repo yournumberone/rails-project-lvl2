@@ -12,7 +12,7 @@
             = t('at')
             =< comment.created_at.strftime('%H:%M %m.%d')
           - if user_signed_in? && comment.user.id == current_user.id
-            = link_to 'Delete', post_comment_path(@post, comment), method: :delete, data: { confirm: t('are_you_sure') }, class: 'text-decoration-none text-reset ps-3'
+            = link_to t('delete'), post_comment_path(@post, comment), method: :delete, data: { confirm: t('are_you_sure') }, class: 'text-decoration-none text-reset ps-3'
 
       = render partial: 'posts/comments/answer_form', locals: { comment: @comment, comment_id: comment.id, content: comment.content }
 

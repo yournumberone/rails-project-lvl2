@@ -5,14 +5,14 @@ class PostsController < ApplicationController
 
   def index
     @q = Post.includes(:creator, :category).ransack(params[:q])
-    @posts = @q.result(distinct: true)
+    @posts = @q.result(distinct: true).order(post_likes_count: :desc)
   end
 
   def show
     @post = find_post
     @comment = @post.comments.build
     @comments = @post.comments.where(ancestry: nil)
-    @like = @post.likes.where(user_id: current_user.id).first if user_signed_in?
+    @like = @post.likes.find_by(user_id: current_user.id) if user_signed_in?
   end
 
   def new
@@ -66,6 +66,6 @@ class PostsController < ApplicationController
   end
 
   def check_owner(post)
-    redirect_to posts_path, alert: t('permission_denied') and return unless post.creator.id == current_user.id
+    redirect_to post_path(post), alert: t('permission_denied') and return unless post.creator.id == current_user.id
   end
 end

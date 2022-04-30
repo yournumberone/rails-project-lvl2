@@ -46,7 +46,7 @@ en:
       comment_form:
         add_comment: 'Add a comment..'
 
-      comments_list:
+      answer_form:
         write_answer: 'Write your answer..'
 
     likes:

@@ -2,8 +2,6 @@
 
 class Posts::CommentsController < Posts::ApplicationController
   before_action :authenticate_user!
-  # before_action :set_post, only: :create
-  # before_action :owner?, only: :destroy
 
   def create
     @post = find_post

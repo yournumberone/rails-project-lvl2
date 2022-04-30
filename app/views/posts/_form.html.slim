@@ -1,8 +1,6 @@
 = simple_form_for post do |form|
   = form.input :title, input_html: { class: 'form-control' }
   = form.input :body, input_html: { class: 'form-control' }
-  .my-1
-    = form.label :category, class: 'form-label mr-3'
   .ml-3
     = form.association :category
   .actions
