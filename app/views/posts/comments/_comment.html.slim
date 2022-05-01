@@ -10,7 +10,7 @@
             = comment.user.email
           span.text-muted.ms-2
             = t('at')
-            =< comment.created_at.strftime('%H:%M %m.%d')
+            =< datetime_num_month(comment.created_at)
           - if user_signed_in? && comment.user.id == current_user.id
             = link_to t('delete'), post_comment_path(@post, comment), method: :delete, data: { confirm: t('are_you_sure') }, class: 'text-decoration-none text-reset ps-3'
 

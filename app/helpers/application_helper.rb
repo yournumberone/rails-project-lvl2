@@ -13,4 +13,12 @@ module ApplicationHelper
       type.to_s
     end
   end
+
+  def datetime_abb_month(datetime)
+    datetime.strftime('%H:%M %B %d')
+  end
+
+  def datetime_num_month(datetime)
+    datetime.strftime('%H:%M %m.%d')
+  end
 end
