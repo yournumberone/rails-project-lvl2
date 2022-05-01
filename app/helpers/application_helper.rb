@@ -15,10 +15,10 @@ module ApplicationHelper
   end
 
   def datetime_abb_month(datetime)
-    datetime.strftime('%H:%M %B %d')
+    datetime.strftime('%H:%M %B %d %Y')
   end
 
   def datetime_num_month(datetime)
-    datetime.strftime('%H:%M %m.%d')
+    datetime.strftime('%H:%M %m.%d.%y')
   end
 end
