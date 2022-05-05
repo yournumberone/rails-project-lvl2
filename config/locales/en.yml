@@ -33,3 +33,4 @@ en:
   permission_denied: You do not have permission.
   are_you_sure: Are You Sure?
   at: 'at: '
+  not_authorized: You are not authorized to perform this action.

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: %i[new create edit update]
+  before_action :authenticate_user!, only: %i[new create edit update destroy]
 
   def index
     @q = Post.includes(:creator, :category).ransack(params[:q])
@@ -31,12 +31,12 @@ class PostsController < ApplicationController
 
   def edit
     @post = find_post
-    check_creator(@post)
+    authorize @post
   end
 
   def update
     @post = find_post
-    check_creator(@post)
+    authorize @post
     if @post.update(post_params)
       redirect_to post_path(@post), notice: t('.success')
     else
@@ -47,7 +47,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post = find_post
-    check_creator(@post)
+    authorize @post
     if @post.destroy
       redirect_to posts_path, notice: t('.success')
     else
@@ -63,9 +63,5 @@ class PostsController < ApplicationController
 
   def find_post
     Post.find(params[:id])
-  end
-
-  def check_creator(post)
-    redirect_to post_path(post), alert: t('permission_denied') and return unless post.creator.id == current_user.id
   end
 end

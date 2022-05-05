@@ -11,7 +11,7 @@
           span.text-muted.ms-2
             = t('at')
             =< datetime_num_month(comment.created_at)
-          - if user_signed_in? && comment.user.id == current_user.id
+          - if policy(comment).destroy?
             = link_to t('delete'), post_comment_path(@post, comment), method: :delete, data: { confirm: t('are_you_sure') }, class: 'text-decoration-none text-reset ps-3'
 
       = render partial: 'posts/comments/answer_form', locals: { comment: @comment, comment_id: comment.id, content: comment.content }
