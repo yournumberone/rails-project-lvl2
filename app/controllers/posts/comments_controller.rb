@@ -16,7 +16,7 @@ class Posts::CommentsController < Posts::ApplicationController
 
   def destroy
     @comment = PostComment.find(params[:id])
-    check_owner(@comment)
+    check_commentator(@comment)
     post = @comment.post
     if @comment.destroy
       redirect_to post_path(post), notice: t('.success')
@@ -31,7 +31,7 @@ class Posts::CommentsController < Posts::ApplicationController
     params.require(:post_comment).permit(%i[content parent_id])
   end
 
-  def check_owner(comment)
+  def check_commentator(comment)
     redirect_to posts_path, alert: t('permission_denied') and return unless comment.user_id == current_user.id
   end
 end

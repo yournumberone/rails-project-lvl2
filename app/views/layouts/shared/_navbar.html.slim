@@ -2,12 +2,10 @@ nav.navbar.bg-light.navbar-expand-lg.px-3.mb-3.rounded-bottom.border-top.border-
   .container-fluid
     = link_to t('Blog'), root_path, class: 'navbar-brand text-success'
 
-  ul.navbar-nav.me-auto.mb-2.mb-lg-0
+  .nav-item
+    = link_to t('.home'), root_path, class: 'nav-link text-dark'
 
-  li.nav-item.text-light
-    = link_to t('home'), root_path, class: 'nav-link active text-dark'
-
-  li.nav-item
+  .nav-item
     = link_to t('.posts'), posts_path, class: 'nav-link text-dark'
 
   - if current_page?(posts_path) || current_page?(root_path)
@@ -17,7 +15,7 @@ nav.navbar.bg-light.navbar-expand-lg.px-3.mb-3.rounded-bottom.border-top.border-
         = f.button :button, class: 'btn btn-outline-success border-start-0 input-group-append' do
           i.fa-solid.fa-magnifying-glass
 
-  li.nav-item.dropdown
+  .nav-item.dropdown
     a#navbarDropdown.nav-link.dropdown-toggle.text-dark[href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"]
       i.fa-solid.fa-house-user
     ul.dropdown-menu-end.dropdown-menu[aria-labelledby="navbarDropdown"]

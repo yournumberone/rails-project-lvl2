@@ -19,9 +19,11 @@
           = link_to t('edit'), edit_post_path(@post), class: 'text-decoration-none text-dark ps-3'
     .justify-content-end.d-flex
       - if @like.present?
-        = link_to '', post_like_path(@post, @like), method: :delete, class: 'fa-solid fa-heart text-danger text-decoration-none'
+        = link_to post_like_path(@post, @like), method: :delete do
+          .fa-solid.fa-heart.text-danger.text-decoration-none.
       - else
-        = link_to '', post_likes_path(@post), method: :post, class: 'fa-solid fa-heart text-dark fw-lighter text-decoration-none'
+        = link_to post_likes_path(@post), method: :post do
+          .fa-solid.fa-heart.text-dark.fw-lighter.text-decoration-none
       span.ms-1
         = @post.post_likes_count
   hr.text-danger
